@@ -1,4 +1,4 @@
-#import "hwt.typ": *
+#import "../templates/hwt.typ": *
 #show: conf.with("May 6, 2026", 4)
 
 #problem(1)[
