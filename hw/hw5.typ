@@ -87,13 +87,58 @@ We see that as $x$ approaches $0$ from the left, the derivative is $-1$, but fro
 
   + If $x in RR$ is such that $|x-a|>R$, then $sum_(n=0)^infinity C_n (x-a)^n$ is divergent for that value of $x$.
 
-  + If $|x-a|<R$, then $sum_(n=0)^infinity C_n (x-a)^n$ converges absolutely.
-
-  + For any $0<r<R$, the series $sum_(n=0)^infinity C_n (x-a)^n$ converges uniformly to $f$ on the compact interval $[a-r, a+r]$. In particular $f$ is continuous on $(a-R, a+R)$.
-  
+  + If $|x-a|<R$, then $sum_(n=0)^infinity C_n (x-a)^n$ converges absolutely. 
 ]
 
 #proof(append: " of (a)")[
+  Note, $limsup abs(C_n (x-a^n))^(1/n) = limsup |C_n|^(1/n) |(x-a)^n|^(1/n) = limsup |C_n|^(1/n) |x-a| > limsup |C_n|^(1/n) R$ since $|x-a| > R$ by assumption. Then we have $ limsup |C_n|^(1/n) R = limsup|C_n|^(1/n) frac(1, limsup |C_n|^(1/n)) = 1. $ So we have that $limsup |C_n (x-a)^n|^(1/n) > 1$. So by the root test, $sum_(n=1)^infinity C_n (x-a)^n$ diverges. 
+]
+
+#v(1cm)
+
+#proof(append: " of (b)")[
+  A similar argument to (a) can be applied here. We have $ limsup |C_n (x-a)^n|^(1/n) < limsup |C_n|^(1/n) R = limsup |C_n|^(1/n) frac(1, limsup |C_n|^(1/n)) = 1. $ By the root test, $sum_(n=1)^infinity C_n (x-a)^n$ converges absolutely.
+]
+
+
+
+#set enum(numbering: "(a)", start: 3)
+#problem(6)[
+  Now assume $R>0$. Let $f:(a-R, a+R)--> RR$ be defined by $f(x):= sum_(n=1)^infinity C_n (x-a)^n$ (which exists by (b)).
+
+  + For all $0<r<R$, $sum_(n=1)^infinity C_n (x-a)^n$ converges uniformly to $f$ on $[a-r, a+r]$. In particular, $f$ is continuous on $(a-R, a+R)$.
+
+  + $f$ is differentiable on $(a-R, a+R)$, and $sum_(n=1)^infinity n C_n (x-a)^(n-1)$ converges uniformly to $f'$ on $[a-r, a+r]$ for every $0<r<R$.
+
+  + For any closed interval $[y,z] subset (a-R, a+R)$, $ integral_([y,z]) f = sum_(n=1)^infinity C_n frac((z-a)^(n+1) - (y-a)^(n+1), n+1). $ 
+]
+
+#proof(append: " of (c)")[
+  Let $f_n: [a-r, a+r] --> RR$ be defined by $f_n(x):=C_n (x-a)^n.$ Then $ ||f_n||_infinity = sup{|C_n (x-a)^n| | x in [a-r, a+r]} = |C_n|r^n. $ Since $|(a+r) - a| = r < R$, then by (b) $sum C_n ((a+r) -a)^n = sum C_n r^n$ converges. So by Weierstrass M-Test, $sum f_n (x) = sum C_n (x-a)^n$ converges uniformly.  
+]
+
+#proof(append: " of (d)")[
+  Let $f_n(x) = C_n (x-a)^n$. Then $f'_n (x) = n C_n (x-a)^(n-1)$. Note, $sum_(n=1)^infinity f'_n (x) = sum_(n=0)^infinity n C_n (x-a)^(n-1)  = frac(1, x-a) sum_(n=1)^infinity n C_n (x-a)^n.$ We can consider all $x != a$ since at $x=a$, the series is just $0$. Note that $lim |n|^(1/n) = 1$. So observe that $ 1/(limsup |n C_n|^(1/n)) = 1/(lim |n|^(1/n)) 1/(limsup |C_n|^(1/n)) = R. $
+  So $sum_(n=1)^infinity n C_n (x-a)^n$ has radius of convergence $R$. Since for fixed $x != a$, $1/(x-a)$ doesn't affect convergence then $sum_(n=1)^infinity C_n (x-a)^(n-1)$ has radius of convergence $R$. By (c), $sum_(n=1)^infinity n C_n (x-a)^(n-1)$ converges uniformly. Note that taking $x=a in [a-r, a+r]$, we have $sum_(n=1)^infinity C_n (x-a)^n = 0$. So by Theorem 3.7.3 we have $f' (x) = sum_(n=1)^infinity f'_n (x)$
+]
+
+#proof(append: " of (e)")[
+  By (c), $sum_(n=0)^infinity C_n (x-a)^n$ converges uniformly for all $[a-r, a+r]$. Then for all intervals $[y,z] subset (a-R, a+R)$, there exists an $r>0$ such that $[y,z] subset [a-r, a+r]$. So $sum_(n=0)^infinity C_n (x-a)^n$ converges uniformly on $[y,z]$. Then we have $ integral_([y,z]) sum_(n=0)^infinity C_n (x-a)^n & = sum_(n=0)^infinity integral_([y,z]) C_n (x-a)^n \ 
+  & = sum_(n=0)^infinity C_n [(x-a)^(n+1)/(n+1)]_(y)^(z)\ &= sum_(n=0)^infinity C_n ((z-a)^(n+1) - (y-a)^(n+1))/(n+1) $
   
 ]
 
+#problem(7)[
+  Let $a in "int"E$, $E subset.eq RR$, and $f$ a real analytic function at $a$. So $f(x) = sum_(n=0)^infinity C_n (x-a)^(n)$ on $(a-r, a+r)$ for some $r>0$. Then for any $k>= 0$, $f$ is k-times differentiable on $(a-r, a+r)$ and 
+  $ f^((k)) (x) = sum_(n=0)^infinity C_(n+k) (n+1)(n+1) space dots.h.c space (n+k) (x-a)^n = sum_(n=0)^infinity C_(n+k) (n+k)!/n! (x-a)^n $ on $(a-r, a+r).$
+]
+
+#proof()[
+  We will proceed by induction on $k.$ For $k=0$ we have $f^((0))(x) = f(x) = sum_(n=0)^infinity C_(n+0) (n+0)!/n! (x-a)^n.$ Now assume we have the $k"-th"$ derivative such that $f^((k))(x) = sum_(n=0)^infinity C_(n+k) (n+k)!/(n!) (x-a)^n.$ Then $f^((k))$ is real analytic and hence uniformly convergent. So by Theorem 4.1.6 (d) we have,
+  $ f^((k+1)) (x) & = sum_(n=0)^infinity C_(n+k) (n+k)!/n! n (x-a)^(n-1) \
+  & = sum_(n=1)^infinity C_(n+k) (n+k)!/n! n (x-a)^(n-1)\ 
+  & = sum_(n=0)^infinity C_(n+k+1) (n+k+1)!/(n+1)! (n+1) (x-a)^n\
+  & = sum_(n=0)^infinity C_(n+(k+1)) (n+(k+1))!/n! (x-a)^n. $
+
+  By induction on $k$, we are done.
+]

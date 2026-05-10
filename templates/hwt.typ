@@ -3,6 +3,7 @@
 	#set par(leading: 0.9em)
 	#set page(
 		paper: "us-letter",
+		margin: (left: 2cm, right: 2cm),
 		header: [
 			#grid(
 				columns: (1fr, 1fr, 1fr),
