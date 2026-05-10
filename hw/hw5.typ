@@ -1,5 +1,5 @@
 #import "../templates/hwt.typ": *
-#show: conf.with("May 6, 2026", 4)
+#show: conf.with("Math 131B", "Jack Olson", "May 8, 2026", "5")
 
 #problem(1)[
   Explain all the why's in the example of a sequence of differentiable functions converging uniformly to a non-differentiable function given in *$section text(3.7)$* in the textbook.

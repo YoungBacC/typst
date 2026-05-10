@@ -1,4 +1,4 @@
-#let conf(date, num, doc) = [
+#let conf(class, name, date, num, doc) = [
 	#set text(font: "New Computer Modern")
 	#set par(leading: 0.9em)
 	#set page(
@@ -8,8 +8,8 @@
 			#grid(
 				columns: (1fr, 1fr, 1fr),
 				align: (left, center, right),
-				[Math 131B],
-				[Jack Olson],
+				[#class],
+				[#name],
 				[#date]
 			)
 			#v(-8pt)
@@ -20,9 +20,6 @@
 	#v(1em)
 	#doc
 ]
-
-
-
 
 #let proof(append:"",body) = block(
     width: 100%,
