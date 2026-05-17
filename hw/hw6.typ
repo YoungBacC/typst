@@ -71,8 +71,8 @@
 
   #v(1cm)
   Now let $t=1-x.$ For $t in (-1, 1) => x in (0,2)$ we have that $ ln(x) = ln(1-t) = -sum_(n=1)^infinity t^n/n = sum_(n=1)^infinity (1-x)^n/n = sum_(n=1)^infinity (-1)^(n+1)/n (x-1)^n. $ This is a power series for $ln(x)$ centered at $1$.
-
-
-
 ]
 
+#problem(4)[
+  Prove that the natural logarithm function is real analytic on $(0, infinity)$
+]
