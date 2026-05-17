@@ -74,5 +74,11 @@
 ]
 
 #problem(4)[
-  Prove that the natural logarithm function is real analytic on $(0, infinity)$
+  Prove that the natural logarithm function is real analytic on $(0, infinity).$
 ]
+
+#proof()[
+   Let $a in (0, infinity).$ We have that $ (ln(a-x))' = (-1)/(a-x) = -1/a sum_(n=0)^infinity 1/a^n x^n. $ Note that the last equality comes from the geometric series formula where we have convergence for $x in (-a, a).$ Fix $x_0 in (-a, a)$. Then by Theorem 4.1.6 (d), on $[0, x_0]$, $1/a sum_(n=0)^infinity 1/a^n x^n$ converges uniformly to $(-1)/(a-x).$ So we can integrate term by term by Theorem 3.7.1. We have, $ -sum_(n=0)^infinity integral_[0, x_0] 1/a^(n+1) x^n d x = integral_[0,x_0] (-1)/(a-x) d x. $ On the Left hand side of the equality we have $ -sum_(n=0)^infinity [x^(n+1)/(a^(n+1)(n+1))]_0^x_0 = -sum_(n=1)^infinity x_0^n/(a^n n). $ On the right hand side of the equality we have $ [ln(a-x)]_0^x_0 = ln(a-x_0) - ln(a). $ So in full we have, $ ln(a-x) = ln(a) - sum_(n=1)^infinity x^n/(a^n n) $ for any $x in (-a, a).$ Now let $t = a-x$, which means $x=a-t$. For any $t in (-a, a) ==> x in (0, 2a),$ we have $ ln(x) = ln(a-t) = ln(a) - sum_(n=1)^infinity t^n/(a^n n) = ln(a) -sum_(n=1)^infinity (a-x)^n/(a^n n) = ln(a) + sum_(n=1)^infinity (-1)^(n+1)/(a^n n)(x-a)^n. $ 
+]
+
+
