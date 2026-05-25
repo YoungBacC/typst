@@ -55,3 +55,22 @@
 #proof(append: " of (c)")[
   Let $(f_n)_(n=1)^oo$ be a sequence of functions in $C(RR\/ZZ; CC)$ which converges uniformly to another function $f:RR -> CC$. Let $epsilon >0$ uniform convergence there exists an $N$ such that for all $x in RR$ and $n >= N$, we have $|f_n (x) - f(x)| < epsilon\/2.$ Let $k in ZZ$. Fix $n>N$. Then for all $x in RR$, we have $|f(x) -f(x + k)| <= |f(x) - f_n(x)| + |f_n (x) - f_n (x+k)| + |f_n (x+k) - f(x+k)| < epsilon\/2 + 0 + epsilon\/2 = epsilon. $ Since $epsilon$ was arbitary, then we have that $f(x) = f(x +k)$, i.e., $f$ is $ZZ$-periodic. Also note that since $f_n -> f$ uniformly and each $f_n$ continuous, then $f$ is also continuous. It follows that $f in C(RR\/ZZ; CC).$
 ]
+
+#problem(4)[
+  Show that $C(RR\/ZZ; CC)$ with the sup norm metric $d_oo$ is a metric space. Furthermore show that this metric space is complete.
+]
+
+#set enum(numbering: "(1)")
+#proof()[
+  We need to verify the four properties of metric spaces.
+  + Take any $f, g in C(RR\/ZZ; CC)$ such that $f(x) != g(x)$ for at least one $x in RR.$ Then $d_oo (f, g) = sup_(x in RR) |f(x) - g(x)| > 0$ since there exists $x in RR$ where $f(x) != g(x).$
+  + Take $f in C(RR\/ZZ; CC)$. Then $d_oo (f, f) = sup_(x in RR)|f(x) - f(x)| = 0.$
+  + Take any $f, g in C(RR\/ZZ; CC).$ Then $d_oo (f, g) = sup_(x in RR) |f(x) - g(x)| = sup_(x in RR) |g(x) - f(x)| = d_oo (g, f).$
+  + Take any $f,g,h in C(RR\/ZZ; CC)$. Then we have, 
+  $ d_oo (f, g) &= sup_(x in RR) |f(x) - g(x)|\
+  & <=^(triangle) sup_(x in RR) (|f(x) - h(x)| + |h(x) - g(x)|) \
+  & = sup_(x in RR) |f(x) - h(x)| + sup_(x in RR) |h(x) - g(x)|\
+  & = d_oo (f,h) + d_oo (h, g) $
+
+  We now show that $(C(RR\/ZZ; CC), d_oo)$ is complete. Since all functions in $C(RR\/ZZ; CC)$ are continuous and bounded, then $C(RR\/ZZ; CC) subset C(RR, CC)$. Since $CC$ is complete when equipped with its standard metric, then $C(RR, CC)$ is also complete when equipped with the sup norm metric by Theorem 3.4.5. Note by Lemma 5.1.5 (c), we have that $C(RR\/ZZ; CC)$ is closed with respect to the sup norm metric. Then for any cauchy sequence $(f_n)_n subset C(RR\/ZZ; CC)$ we have that $(f_n)_n subset C(RR, CC).$ Since $C(RR, CC)$ cauchy, then $f_n$ converges in $C(RR, CC)$. But since $C(RR\/ZZ; CC)$ is closed and $f_n in C(RR\/ZZ; CC)$ for all $n$, then we must have that $f_n$ converges in $C(RR\/ZZ; CC).$ Hence $C(RR\/ZZ; CC)$ is complete with respect to the sup norm metric.
+]
