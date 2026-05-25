@@ -23,8 +23,8 @@
 
 #let proof(append:"",body) = block(
     width: 100%,
-		above : 1cm,
-		below: 1cm,
+		above : 2em,
+		below: 2em,
     [_Proof#append._ #body #h(1fr) $square$]
 )
 
