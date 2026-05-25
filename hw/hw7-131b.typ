@@ -63,14 +63,14 @@
 #set enum(numbering: "(1)")
 #proof()[
   We need to verify the four properties of metric spaces.
-  + Take any $f, g in C(RR\/ZZ; CC)$ such that $f(x) != g(x)$ for at least one $x in RR.$ Then $d_oo (f, g) = sup_(x in RR) |f(x) - g(x)| > 0$ since there exists $x in RR$ where $f(x) != g(x).$
+  + Take any $f, g in C(RR\/ZZ; CC)$ such that $f(x) != g(x)$ for at least one $x in RR.$ Then $d_oo (f, g) = sup_(x in RR) |f(x) - g(x)| > 0$. This is because there exists $x in RR$ where $f(x) != g(x) => |f(x) - g(x)| >0$.
   + Take $f in C(RR\/ZZ; CC)$. Then $d_oo (f, f) = sup_(x in RR)|f(x) - f(x)| = 0.$
   + Take any $f, g in C(RR\/ZZ; CC).$ Then $d_oo (f, g) = sup_(x in RR) |f(x) - g(x)| = sup_(x in RR) |g(x) - f(x)| = d_oo (g, f).$
   + Take any $f,g,h in C(RR\/ZZ; CC)$. Then we have, 
   $ d_oo (f, g) &= sup_(x in RR) |f(x) - g(x)|\
   & <=^(triangle) sup_(x in RR) (|f(x) - h(x)| + |h(x) - g(x)|) \
-  & = sup_(x in RR) |f(x) - h(x)| + sup_(x in RR) |h(x) - g(x)|\
+  & <= sup_(x in RR) |f(x) - h(x)| + sup_(x in RR) |h(x) - g(x)|\
   & = d_oo (f,h) + d_oo (h, g) $
 
-  We now show that $(C(RR\/ZZ; CC), d_oo)$ is complete. Since all functions in $C(RR\/ZZ; CC)$ are continuous and bounded, then $C(RR\/ZZ; CC) subset C(RR, CC)$. Since $CC$ is complete when equipped with its standard metric, then $C(RR, CC)$ is also complete when equipped with the sup norm metric by Theorem 3.4.5. Note by Lemma 5.1.5 (c), we have that $C(RR\/ZZ; CC)$ is closed with respect to the sup norm metric. Then for any cauchy sequence $(f_n)_n subset C(RR\/ZZ; CC)$ we have that $(f_n)_n subset C(RR, CC).$ Since $C(RR, CC)$ cauchy, then $f_n$ converges in $C(RR, CC)$. But since $C(RR\/ZZ; CC)$ is closed and $f_n in C(RR\/ZZ; CC)$ for all $n$, then we must have that $f_n$ converges in $C(RR\/ZZ; CC).$ Hence $C(RR\/ZZ; CC)$ is complete with respect to the sup norm metric.
+  We now show that $(C(RR\/ZZ; CC), d_oo)$ is complete. Since all functions in $C(RR\/ZZ; CC)$ are continuous and bounded, then $C(RR\/ZZ; CC) subset C(RR -> CC)$. Since $CC$ is complete when equipped with its standard metric, then $C(RR -> CC)$ is also complete when equipped with the sup norm metric by Theorem 3.4.5. Note by Lemma 5.1.5 (c), we have that $C(RR\/ZZ; CC)$ is closed with respect to the sup norm metric. Then for any cauchy sequence $(f_n)_n subset C(RR\/ZZ; CC)$ we have that $(f_n)_n subset C(RR -> CC).$ Since $C(RR -> CC)$ cauchy, then $f_n$ converges in $C(RR -> CC)$. But since $C(RR\/ZZ; CC)$ is closed and $f_n in C(RR\/ZZ; CC)$ for all $n$, then we must have that $f_n$ converges in $C(RR\/ZZ; CC).$ Hence $C(RR\/ZZ; CC)$ is complete with respect to the sup norm metric.
 ]
