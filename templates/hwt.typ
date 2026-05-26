@@ -28,6 +28,13 @@
     [_Proof#append._ #body #h(1fr) $square$]
 )
 
+#let solution(append:"",body) = block(
+    width: 100%,
+		above : 2em,
+		below: 2em,
+    [*Solution#append:* #body #h(1fr) $square$]
+)
+
 #let problem(num, body) = block(
 	width: 100%,
 	[*Problem #num.* #emph(body)]
