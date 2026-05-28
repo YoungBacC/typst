@@ -1,4 +1,4 @@
-#import "../templates/hwt.typ": *
+#import "../../templates/hwt.typ": *
 #show: conf.with("Math 151A", "Jack Olson", "May 23, 2026", "6")
 
 #set enum(numbering: "(a)")

@@ -1,4 +1,4 @@
-#import "../templates/hwt.typ": *
+#import "../../templates/hwt.typ": *
 #show: conf.with("Math 131B", "Jack Olson", "May 11, 2026", "6")
 
 #problem(1)[

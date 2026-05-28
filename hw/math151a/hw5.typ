@@ -1,4 +1,4 @@
-#import "../templates/hwt.typ": *
+#import "../../templates/hwt.typ": *
 #show: conf.with("Math 151A", "Jack Olson", "May 18, 2026", "5")
 
 
@@ -44,8 +44,8 @@ plt.show()
 #grid(
   columns: (1fr, 1fr),
   gutter: 1em,
-  figure(image("../images/Figure_1.png"), caption: [Part (b)]),
-  figure(image("../images/Figure_2.png"), caption: [Part (c)]),
+  figure(image("../../images/Figure_1.png"), caption: [Part (b)]),
+  figure(image("../../images/Figure_2.png"), caption: [Part (c)]),
 )
 
 == Discussion

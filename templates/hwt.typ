@@ -1,4 +1,5 @@
 #let conf(class, name, date, num, doc) = [
+	#show math.equation: set block(breakable: true)
 	#set text(font: "New Computer Modern")
 	#set par(leading: 0.9em)
 	#set page(
