@@ -15,7 +15,7 @@
   Show that $ e^z/(1+z) = 1 + 1/2 z^2 - 1/3 z^3 + 3/8 z^4 -11/30 z^5 + dots $ Show that the general term of the power series is given by $a_n = (-1)^n [1/2! - 1/3! + dots + (-1)^n/n!], n>=2.$ What is the radius of convergence of the series?
 ]
  #solution()[
-  Note that $ e^z = 1 + z + 1/2 z^2 + 1/6 z^3 + 1/24 z^4 + 1/120 z^5 + dots $ and $ 1/(1+x) = 1/(1-(-x)) = 1 - z + z^2 - z^3 + z^4 - z^5 + dots $ So we have, $ e^z/(1+z) &= (1 + z + 1/2 z^2 + 1/6 z^3 + 1/24 z^4 + 1/120 z^5 + dots)(1 - z + z^2 - z^3 + z^4 - z^5 + dots)\ &= 1 + 1/2 z^2 -1/3 z^3 + 3/8 z^4 - 11/30 z^5 + dots $ Note that in general we have $ e^z = sum_(n=0)^oo z^n/n! " and " 1/(1+x) = sum_(n=0)^oo (-1)^n z^n. $ In general we have, $ a_n &= 1 dot (-1)^n + 1 dot (-1)^(n-1) + 1/2! (-1)^(n-2) + 1/3! (-1)^(n-3) + dots +1/n!(-1)^0 \ &= (-1)^n [1 - 1 + 1/2! (-1)^(-2) + 1/3! (-1)^(-3) + dots + 1/n! (-1)^(-n)]\ &= (-1)^n [1/2! - 1/3! + dots + (-1)^n/n!]. $ Since $1/(1+z) = sum_(n=0)^oo (-1)^n z^n$ has radius of convergence of $1$, so we must have that $e^z/(1+z) = sum_(n=0)^oo a_n z^n$ has a radius of convergence of at least $1$.
+  Note that $ e^z = 1 + z + 1/2 z^2 + 1/6 z^3 + 1/24 z^4 + 1/120 z^5 + dots $ and $ 1/(1+x) = 1/(1-(-x)) = 1 - z + z^2 - z^3 + z^4 - z^5 + dots $ So we have, $ e^z/(1+z) &= (1 + z + 1/2 z^2 + 1/6 z^3 + 1/24 z^4 + 1/120 z^5 + dots)(1 - z + z^2 - z^3 + z^4 - z^5 + dots)\ &= 1 + 1/2 z^2 -1/3 z^3 + 3/8 z^4 - 11/30 z^5 + dots $ Note that in general we have $ e^z = sum_(n=0)^oo z^n/n! " and " 1/(1+x) = sum_(n=0)^oo (-1)^n z^n. $ In general we have, $ a_n &= 1 dot (-1)^n + 1 dot (-1)^(n-1) + 1/2! (-1)^(n-2) + 1/3! (-1)^(n-3) + dots +1/n!(-1)^0 \ &= (-1)^n [1 - 1 + 1/2! (-1)^(-2) + 1/3! (-1)^(-3) + dots + 1/n! (-1)^(-n)]\ &= (-1)^n [1/2! - 1/3! + dots + (-1)^n/n!]. $ Since $1/(1+z) = sum_(n=0)^oo (-1)^n z^n$ has radius of convergence of $1$ and $e^z$ has infinite radius of convergence, then we must have that $e^z/(1+z) = sum_(n=0)^oo a_n z^n$ has a radius of convergence $1$.
  ]
 
  #problem(6)[
@@ -54,4 +54,39 @@
 
 #proof()[
   Note that the zeros of $sin(z)$ are $z = n pi$ for $n in ZZ$. They each have order $1$ since $(sin(z))' = (cos(z))$ which is not zero for any $n pi$. So, each $z = n pi$ is of order $1$. Note, $tan(z) = sin(z)/cos(z)$. We know $1/cos(z)$ has no zeros and $cos(z) != 0 $ for any $n pi$, i.e. $1/cos(z)$ is defined for all the zeros of $sin(z).$ So the same conclusions for $sin$ also follow for $tan$.
+]
+
+#problem(6)[
+  Suppose $f(z)$ is analytic on a domain $D$ and $z_0 in D$. Show that if $f^((m)) (z_0) = 0$ for $m>=1$, then $f(z)$ is constant on $D$.
+]
+
+#proof()[
+  Since $f$ is analytic on $D$ and $z_0 in D$, then we can write it's power series centered at $z_0$ on some disk $D(z_0, r)$, where $r>0$. We have $ f(z) = sum_(m=0)^oo a_m (z-z_0)^m. $ By Taylor's theorem we have $ a_m = (f^((m))(z_0))/m!. $ But for all $m>=1$, $f^((m))(z_0) = 0 ==> a_m = 0$ for all $m>=1$. So $f(z) = f(z_0)$ for all $z in D(z_0, r)$. We can define a function $g(z) = f(z_0)$ for all $z in D(z_0, r).$ Then for every $z in D(z_0, r) subset.eq D$ we have that $f(z) = g(z)$. By the Indentity Theorem since $f(z) = g(z) = f(z_0)$ for all $z in D.$ Hence $f$ is constant on $D$ 
+]
+
+#problem(9)[
+  Show that if the analytic function $f(z)$ has a zero of order $N$ at $z_0$, then $f(z) = g(z)^N$ for $g(z)$ analytic near zero and $g'(z_0) != 0$.
+]
+
+#proof()[
+  By definition of a zero of order $N,$ we have $f(z) = (z-z_0)^N h(z)$ where $h$ is analytic and non zero for $z=z_0.$ Since $h$ analytic and in particular continuous, then $h(z) != 0$ for $z in D(z_0, r)$ for some $r >0$. Then we have for $z$ on such a disk we can take $(h(z))^(1/N) := e^(1/N log(h(z)))$ since $h(z)$ non zero on a disk neighborhood of $z_0$. So we have $f(z) = ((z-z_0)h(z)^(1/N))^(N)$ for $z in D(z_0, r).$ Define $g(z) := (z-z_0)h(z)^(1/N)$ for $z in D(z_0, r)$. Note that $g'(z_0) = h(z_0)^(1/N) + (z_0-z_0)(1/N)h(z_0)^(1/N - 1) h'(z_0) = h(z_0)^(1/N) != 0$ since $h(z_0) != 0.$ So we are done. 
+]
+
+== #underline("VI.1")
+#v(1em)
+#problem(1)[
+  Find all possible Laurent expansions centered at $0$ of the following functions:\
+  (c)$1/((z^2-1)(z^2-4))$
+]
+
+#solution(append: " of (c)")[
+  There are $3$ regions of interest: ${0<=|z|<1}, {1<|z|<2}, {2<|z|<oo}.$ Note we can use PFD to get $ 1/((z^2-1)(z^2-4)) = (-1\/3)/(z^2 - 1) + (1\/3)/(z^2-4). $ 
+  *Region 1:* ${0<=|z|<1}$\
+  We have that $|z^2|<1 "and" |(z\/2)^2| < 1$ so we get,
+  $ (-1\/3)/(z^2 - 1) + (1\/3)/(z^2-4) &= (1\/3)/(1-z^2) - (1\/12)/(1-(z\/2)^2)\ &=sum_(n=0)^oo 1/3z^(2n) - sum_(n=0)^oo 1/12 1/(2^(2n)) z^(2n)\ &= sum_(n=0)^oo (1/3 - 1/12 1/(2^(2n)))z^(2n). $
+  *Region 2:* ${1<|z|<2}$\
+  We have that $|z|>1 ==> |1/z| < 1 ==> |1/z^2| <1 "and" |z| < 2 ==> |z/2| < 1 ==> |(z/2)^2| < 1.$ So we have, $ (-1\/3)/(z^2 - 1) + (1\/3)/(z^2-4) &= ((-1\/3)(1\/z^2))/(1-(1\/z)^2) - (1\/12)/(1-(z\/2)^2)\ &= sum_(n=0)^oo -1/3 1/z^2 (1/z)^(2n) - sum_(n=0)^oo 1/12 (z/2)^(2n)\ &= sum_(n=0)^oo -1/3 (1/z)^(2n+2) - sum_(n=0)^oo 1/12 1/2^(2n) z^(2n)\ &= sum_(n=-oo)^0 -1/3 z^(2n -2) - sum_(n=0)^oo 1/12 1/2^(2n) z^2n. $
+  *Region 3:* ${2<|z|<+oo}$\
+  We have $|(1\/z)^2| < 1$ and $|(2\/z)^2|<1.$ $ (-1\/3)/(z^2 - 1) + (1\/3)/(z^2-4) &= ((-1\/3)(1\/z^2))/(1-(1\/z)^2) + ((1\/12)(2\/z)^2)/(1-(2\/z)^2)\ &= sum_(n=0)^oo -1/3 1/z^2 (1/z)^(2n) + sum_(n=0)^oo 1/12 (2/z)^2 (2/z)^(2n)\ &= sum_(n=0)^oo -1/3 (1/z)^(2n+2) + sum_(n=0)^oo 2^(2n)/3 (1/z)^(2n+2)\ &= sum_(n=-oo)^0 -1/3 z^(2n-2) + sum_(n=-oo)^0 1/(3 dot 2^(2n))z^(2n-2)\ &= sum_(n=-oo)^0 (-1/3 + 1/(3 dot 2^(2n)))z^(2n -2)  $
+
 ]
