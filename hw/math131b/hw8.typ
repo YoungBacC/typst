@@ -26,7 +26,7 @@
 #set math.equation(numbering: none)
 
 #proof(append: " of (c)")[
-  Notice that $ norm(f + g)_2^2 &= ip(f + g, f + g)\ &= ip(f+g, f) + ip(f + g, g)\ &= ip(f,f) + ip(f,g) + ip(g, f) + ip(g, g)\ &= norm(f)_2^2 + norm(g)_2^2 + ip(f,g) + ip(g,f)\ &<=^("C.S") norm(f)_2^2 + norm(g)^2 + 2 norm(f)_2 norm(g)_2\ &= (norm(f)_2 + norm(g)_2)^2. $ So we have $norm(f + g)_2^2 <= (norm(f)_2 + norm(g)_2)^2 ==> norm(f+g)_2 <= norm(f)_2 + norm(g)_2.$
+  Notice that $ norm(f + g)_2^2 &= ip(f + g, f + g)\ &= ip(f+g, f) + ip(f + g, g)\ &= ip(f,f) + ip(f,g) + ip(g, f) + ip(g, g)\ &= norm(f)_2^2 + norm(g)_2^2 + ip(f,g) + ip(g,f)\ &= norm(f)_2^2 + norm(g)_2^2 + ip(f,g) + overline(ip(f,g)) && space "("z + overline(z) = 2"Re"(z)")"\ &= norm(f)_2^2 + norm(g)_2^2 + 2|ip(f,g)|\ &<=^("C.S") norm(f)_2^2 + norm(g)^2 + 2 norm(f)_2 norm(g)_2\ &= (norm(f)_2 + norm(g)_2)^2. $ So we have $norm(f + g)_2^2 <= (norm(f)_2 + norm(g)_2)^2 ==> norm(f+g)_2 <= norm(f)_2 + norm(g)_2.$
 ]
 
 #proof(append: " to (d)")[
@@ -59,7 +59,7 @@
 #set enum(numbering: "(1)")
 #proof()[
   We need to show the metric space axioms are held.
-  + We wish to show $d_(L^2)(f,g) > 0$ for $f,g in C(RR\/ZZ; CC)$ where $f$ is not identically $g.$ Indeed, since $f$ not identically $g$, then there exists $x in RR$ such that $|f(x) - g(x)| > 0 ==> |f(x) - g(x)|^2 > 0.$ So $d_(L^2)(f, g) = integral_0^1 |f(x)-g(x)|^2 d x >0$. 
+  + We wish to show $d_(L^2)(f,g) > 0$ for $f,g in C(RR\/ZZ; CC)$ where $f$ is not identically $g.$ Indeed, since $f$ not identically $g$, then there exists $x in RR$ such that $|f(x) - g(x)| > 0.$ Note that $f-g$ is continuous, so there exists a neighborhood of $x$ such that $(f-g)(x)$ is non-zero. So $d_(L^2)(f, g) = integral_0^1 |f(x)-g(x)|^2 d x >0$. 
   + We wish to show for any $f in C(RR\/ZZ; CC)$, we have $d_(L^2)(f,f) = 0.$ Take any $f in C(RR\/ZZ; CC)$. Then we have $|f(x) - f(x)|^2 = 0$ for all $x in [0,1]$. Hence $d_(L^2)(f,f) = integral_0^1 |f(x)-f(x)|^2 d x = 0.$
   + We wish to show for any $f, g in C(RR\/ZZ; CC)$ we have that $d_(L^2)(f,g) = d_(L^2)(g,f).$ Indeed for any $f, g in C(RR\/ZZ; CC)$ we have that $d_(L^2)(f,g) = integral_0^1 |f(x) - g(x)|^2 d x = integral_0^1 |g(x) -f(x)|^2 d x  =d_(L^2)(g,f).$
   + We wish to show that for any $f,g,h in C(RR\/ZZ; CC), d(f,g) <= d_(L^2)(f,h) + d_(L^2)(h,g).$ Take any $f,g, h in C(RR\/ZZ; CC)$. By triangle inequality of the $L^2$ norm, we have, $d_(L^2)(f,g) = norm(f-g)_2 = norm((f-h) + (h-g))_2 <= norm(f-h)_2 + norm(h - g)_2 = d_(L^2)(f,h) + d_(L^2)(h,g)$ 
