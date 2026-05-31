@@ -114,7 +114,7 @@
   ]
 
 #solution(append: " for (i)")[
-  Notice that $1\/(z^2 +1)$ has isolated singularities at $z = plus.minus i.$ We now find the type of singularity for $z = i$ since it is symmetric for the $z=-i$ case. Let $w=z+i$. We have $ 1/((z-i)(z+i)) &= 1/w 1/(w-2i)\ &= -1/(2 i w) 1/(1-(w\/2i))\ &= -1/(2 i w) (1 + w/(2i) - w^2/(4) - w^3/(8 i) + O(w^4))\ &= -1/(2 i w) +  1/4 + w/(8i) - w^2/(16) + O(w^3). $ Now we can plug this into the power series expansion for $exp.$ We have, $ 1 + (-1/(2 i w) +  1/4 + w/(8i) - w^2/(16) + O(w^3)) + 1/2(-1/(2 i w) +  1/4 + w/(8i) - w^2/(16) + O(w^3))^2 + dots $ Clearly we will have infinite negative powers of $w$ since the first term is a negative power of $w$ and the power grows infinitely. Hence we have infinite negative powers of $z-i$. It follows that $i$ is an essential singularity. Symmetrically $-i$ is an essential singularity.
+  Notice that $1\/(z^2 +1)$ has isolated singularities at $z = plus.minus i.$ We now find the type of singularity for $z = i$ since it is symmetric for the $z=-i$ case. Let $w=z+i$. We have $ 1/((z-i)(z+i)) &= 1/w 1/(w-2i)\ &= -1/(2 i w) 1/(1-(w\/2i))\ &= -1/(2 i w) (1 + w/(2i) - w^2/(4) - w^3/(8 i) + O(w^4))\ &= -1/(2 i w) +  1/4 + w/(8i) - w^2/(16) + O(w^3). $ Now we can plug this into the power series expansion for $exp.$ We have, $ 1 + (-1/(2 i w) +  1/4 + w/(8i) - w^2/(16) + O(w^3)) + 1/2(-1/(2 i w) +  1/4 + w/(8i) - w^2/(16) + O(w^3))^2 + dots $ Clearly we will have infinite negative powers of $w$ since the first term in each parenthetic term is a negative power of $w$ and the power grows infinitely. Hence we have infinite negative powers of $z-i$. It follows that $i$ is an essential singularity. Symmetrically $-i$ is an essential singularity.
   
   ]
 
