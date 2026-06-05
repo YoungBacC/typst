@@ -40,3 +40,5 @@
 	width: 100%,
 	[*Problem #num.* #emph(body)]
 )
+
+#let ip(x, y) = $lr(chevron.l #x, #y chevron.r)$

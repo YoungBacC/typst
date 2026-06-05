@@ -2,7 +2,7 @@
 #show: conf.with("Math 131B", "Jack Olson", "May 27, 2026", "8")
 
 //inner product
-#let ip(x, y) = $lr(chevron.l #x, #y chevron.r)$
+
 
 #set enum(numbering: "(a)")
 #problem(1)[
