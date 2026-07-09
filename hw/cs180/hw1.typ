@@ -107,23 +107,6 @@ return num;
 ]
 
 #problem(5)[
-  Gale and Shapely published their paper on the Stable Matching Problem in 1962; but a version of their algorithm had already been in use for ten years by the National Resident Matching Program, for the problem of assigning medical residents to hospitals.
-  
-  Basically, the situation was the following. There were $m$ hospitals, each with a certain number of available positions for hiring residents. There were $n$ medical students graduating in a given year, each interested in joining one of the hospitals. Each hospital had a ranking of the students in order of preference, and each student had a ranking of the hospitals in order of preference. We will assume there were more students graduating than there were slots available in the $m$ hospitals.
-  
-  The interest, naturally, was in finding a way of assigning each student to at most one hospital, in such a way that all available positions in all hospitals were filled. (Since we are assuming a surplus of students, there would be some students who do not get assigned to any hospital.)
-
-  We say that an assignment of students to hospitals is stable if neither of the following situations arises.
-  - First type of instability: There are students $s$ and $s'$ and a hospital $h$ such that
-    - $s$ is assigned to $h$, and
-    - $s'$ is assigned to no hospital, and
-    - $h$ prefers $s'$ to $s$.
-  - Second type of instability: There are students $s$ and $s'$ and hospitals $h$ and $h'$ such that 
-    - $s$ is assigned to $h$, and
-    - $s'$ is assigned to $h'$, and
-    - $h$ prefers $s'$ to $s$, and
-    - $s'$ prefers $h$ to $h'$.
-
   Show that there is always a stable assignment of students to hospitals, and give an algorithm to find one. Additionally provide a time complexity analysis of the algorithm.
 ]
 
@@ -131,21 +114,66 @@ return num;
   #block(stroke: 1pt, inset:10pt)[
   ```
   Algorithm(Preference list for n Students and m Hospitals)
-  let M be an empty map;
-  while (some student s is unmatched and hasn't proposed to every hospital on their preference list) do
-    let h be the first hospital on s's preference list which they haven't proposed to;
-    if (M[h] isn't full) add s to h's matches in M;
-    else 
-      let s' be h's least preferred student;
-      if (h prefers s to s') remove s' from M[h] and replace add s to M[h];
-      else h rejects s, M stays the same
+    let M be an empty map;
+    while (some student s is unmatched and hasn't proposed to every hospital) do
+      let h be the first hospital on s's preference list which they haven't proposed to;
+      if (M[h] isn't full) add s to h's matches in M;
+      else 
+        let s' be h's least preferred student;
+        if (h prefers s to s') remove s' from M[h] and replace add s to M[h];
+        else h rejects s, M stays the same
+    return M;
   ```
   ]
   We now prove that this algorithm always finds a stable matching.
-  #proof()[
+  #proof()[ 
+    Notice the following observation: if a hospital $h$ rejects a student $s$ at any point during the algorithm, then $h$ will prefer every student in its final matching to $s$. This is because $h$ will always bump it's worst student in favor of a better student which is proposing. So if $s$ got bumped from $h$, it's because $s$ was the worst student and a proposing student was better. If $s$ proposed to $h$ and got rejected, it's because $h$ didn't prefer $s$ over it's worst student at the time. Since $h$'s students only get better then $s$ must be worse than the final selection.
+
     Assume for the sake of contradiction that algorithm outputs a matching $M$ which is not stable, i.e., it has at least one instability. We have two cases.\
-    *Case 1:* There is a student $s$ and hospital $h$ with $s in M[h]$ and some $s'$ not assigned to any hospital such that $h$ prefers $s'$ to $s$. We have two subcases
-    - $s'$ was never matched to a hospital. Then everytime $s'$ came up in the while loop, all hospitals were full and rejected $s.$ This means that 
+    *Case 1:* There is a student $s$ and hospital $h$ with $s in M[h]$ and some $s'$ not assigned to any hospital such that $h$ prefers $s'$ to $s$. Then since the algorithm is over, $s'$ must've proposed to $h$ at some point and got rejected at some point (either immediately or later bumped). By the observation, since $s'$ was rejected then all students in $M[h]$ are better than $s'$. Contradiction.\
+    *Case 2:* There are students $s$ and $s'$ and hospitals $h$ and $h'$ such that $s in M[h]$ and $s' in M[h']$ but $h$ prefers $s'$ to $s$ and $s'$ prefers $h$ to $h'$. We have two subcases:
+    - $s'$ never proposed to $h$. Note that $s'$ makes proposals in decreasing order of preference, so $h'$ must've been higher on $s'$ preference list than $h$. Contradiction.
+    - $s'$ did propose to $h$ at some point. This must mean that $h$ rejected $s'$ at some point. By our observation, $h$'s final selection must be preferred over $s'$. Contradiction.
+  ]
+  *Complexity Analysis:* We claim the algorithm is $O(n^2).$ In the while loop, every operation is $O(1)$ besides finding the worst student in some hospital $h$'s preference list. Each hospital has a set amount of space allocated for students, call this $c_h$. Then at most $n$ students can propose to $h$. So at most $h$ has to look up its worst student $n$ times, which would come out to $O(c_h dot n).$ Since there are $m$ hospitals, then in total the algorithm would be $O(sum_(h=1)^m c_h dot n) <= O(n^2)$ since $sum_(h=1)^m c_h <= n.$ This is because we take the assumption that there are less hospital spots than students.
+]
+
+#problem(6)[
+  Show that such a set of truncations can always be found, and give an algorithm to find them. Additionally, provide a time complexity analysis of your algorithm.
+]
+
+#solution()[
+  We first give an algorithm and then prove that it works.
+  #block(stroke: 1pt, inset:10pt)[
+  ```  
+  Algorithm(a map S of the schedule of each ship)
+    initialize an empty map M;
+    while (a ship s is unmatched and hasn't proposed to all ports on its schedule) do 
+      let p be the first port on s's schedule which it hasn't proposed to;
+      if (p is unmatched) add (s, p) to M;
+      else
+        let s' be the ship which p is paired with;
+        if (p is sooner on s' schedule than s) remove (s', p) from M and add (s,p) to M;
+        else leave M the same;
+    return M;
+  ```
   ]
 
+  We now will prove that the algorithm works and always produces a set of truncations which satisfies that no two ships will ever be at the same port on the same day. 
+  #proof()[
+    We will establish some notation before starting. For each ship $s$ matched to some port $p_s$ let $D(s)$ be the day that $s$ visits $p_s$ in its original schedule. We need to show that for every day $t$, no two ships are at the same port. Fix some day $t$. Assume for the sake of contradiction that there exists two ships $s_1$ and $s_2$ which are at the same port $p$ on day $t$ We have 3 cases:\
+    *Case 1:* Both ships are not at their matched port yet. This means they are still following their original schedule which we assume makes it so no two ships are at the same port. Contradiction\
+    *Case 2:* Both ships are stationed at their assigned port. Notice that our algorithm will never have two ships matched to the same port. This is because in the case where a ship $s$ proposes to a matched port $p$ and we add $(s,p)$ to $M$, then we also remove the matching between the other ship $(s',p)$ from $M$. Contradiction.\
+    *Case 3:* One ship, WLOG $s_1$, is stationed at its matched port $p_(s_1)$ since $D(s_1) <= t$, and $s_2$ is still not at it's matched port on day $t$. But since we are assuming that $s_2$ is at port $p_(s_1)$ on day $t$, then by Case 1, we must have that $D(s_1) < t$ because two ships can't be at the same port on the same day in their original schedule. Then since the proposal order of each ship is the same as their schedule and we have $D(s_1) < t < D(s_2)$, then at some point $s_2$ proposed to $p_(s_1)$. Then either $s_2$ was rejected immediately or later bumped. Our algorithm is analogous to Gale-Shapely. So the observation from before still applies, i.e., if port $p$ rejects ship $s$, then $p's$ final match will arrive later than ship $s$. So this means that $s_2$ must arrive at port $p_(s_1)$ before $s_1$ is stationed there. Contradiction.
+  ]
+
+  *Complexity Analysis:* The analysis here is the same as Gale-Shapely. We claim the algorithm is $O(n^2)$ where $n$ is the number of ships and ports. Each ship will propose to at most $n$ ports and since there are $n$ ports, there is at most $n^2$ iterations of the while loop. Each operation in the while loop is $O(1)$, so it follows that the algorithm is $O(n^2).$
 ]
+
+#problem(7)[
+  Give a proof that, for any set of preference lists, switching the order of a pair on the list cannot improve a woman's partner in the Gale-Shapley algorithm
+]
+
+#proof()[
+  Let $W$ be $w$'s true preference list and $W'$ be the preference list with $m "and" m'$ swapped which rank lower than her true partner $m^*$. Suppose we run Gale-Shapely twice, one with $W$, where $w$ ends up with $w^*$ and the other with $W'$, where $w$ ends up with some other man $m''$ who ranks higher than $m^*$. Notice that $m^*$'s behaviour is completely unaffected by $w$'s preference list, so $m^*$ will still propose to $w$ at the same moment in both $W$ and $W'$ runs. When $m^*$ does propose, $w$ is either holding no one or some man $m$. If $w$ is holding no one, then $w$ will accept $m^*$. If not $w$ will compare $m^*$ to $m$. Notice that since the only difference between the $W "and" W'$ runs is the swap between lower ranked $m "and" m'$, then the only difference that could have occured is that $w$ holds $m$ instead of $m'$, vise versa, or someone who is different than $m "and" m'$ but still ranked below $m^*$. Since in all cases $m^*$ is ranked highest, then $w$ will accept $m^*$. Notice that once $w$ accepts $m^*$, it will stay like that since now the remainder of the $L'$ run is the same as the $L$ run. Thus $w$ will end up with $m^*$ in both runs. Contradiction.
+ ]
